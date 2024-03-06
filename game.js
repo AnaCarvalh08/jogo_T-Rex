@@ -26,21 +26,21 @@ var somMorte, somCheckpoint, somPulo;
 
 //Serve para carregar e executar apenas uma vez, não varias, imagens, sons, videos
 function preload() {
-    trexImg = loadAnimation("./sprites/t1.png", "./sprites/t2.png", "./sprites/t3.png", "./sprites/t4.png");
-    chaoImg = loadImage("./sprites/ground2.png");
-    nuvemImg = loadImage("./sprites/cloud.png");
-    ob1 = loadImage("./sprites/obstacle1.png");
-    ob2 = loadImage("./sprites/obstacle2.png");
-    ob3 = loadImage("./sprites/obstacle3.png");
-    ob4 = loadImage("./sprites/obstacle4.png");
-    ob5 = loadImage("./sprites/obstacle5.png");
-    ob6 = loadImage("./sprites/obstacle6.png");
-    gameOverImg = loadImage("./sprites/gameOver.png");
-    restartImg = loadImage("./sprites/restart.png");
-    trexDead = loadAnimation("./sprites/trex_collided.png");
-    somPulo = loadSound("./sons/jump.mp3");
-    somMorte = loadSound("./sons/die.mp3");
-    somCheckpoint = loadSound("./sons/checkpoint.mp3");
+    trexImg = loadAnimation("t1.png", "t2.png", "t3.png", "t4.png");
+    chaoImg = loadImage("ground2.png");
+    nuvemImg = loadImage("cloud.png");
+    ob1 = loadImage("obstacle1.png");
+    ob2 = loadImage("obstacle2.png");
+    ob3 = loadImage("obstacle3.png");
+    ob4 = loadImage("obstacle4.png");
+    ob5 = loadImage("obstacle5.png");
+    ob6 = loadImage("obstacle6.png");
+    gameOverImg = loadImage("gameOver.png");
+    restartImg = loadImage("restart.png");
+    trexDead = loadAnimation("trex_collided.png");
+    somPulo = loadSound("jump.mp3");
+    somMorte = loadSound("die.mp3");
+    somCheckpoint = loadSound("checkpoint.mp3");
 }
 
 //Executa 1 vezes no inicio do jogo
