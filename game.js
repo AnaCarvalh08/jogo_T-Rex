@@ -1,5 +1,5 @@
 //Variáveis Globais
-var forcaPulo = -15;
+var forcaPulo = -20;
 var gravidade = 1.5;
 
 var trex, trexImg, trexDead;
@@ -22,6 +22,8 @@ var gameState = play;
 
 var score = 0;
 
+var somMorte, somCheckpoint, somPulo;
+
 //Serve para carregar e executar apenas uma vez, não varias, imagens, sons, videos
 function preload() {
     trexImg = loadAnimation("./sprites/t1.png", "./sprites/t2.png", "./sprites/t3.png", "./sprites/t4.png");
@@ -36,6 +38,9 @@ function preload() {
     gameOverImg = loadImage("./sprites/gameOver.png");
     restartImg = loadImage("./sprites/restart.png");
     trexDead = loadAnimation("./sprites/trex_collided.png");
+    somPulo = loadSound("./sons/jump.mp3");
+    somMorte = loadSound("./sons/die.mp3");
+    somCheckpoint = loadSound("./sons/checkpoint.mp3");
 }
 
 //Executa 1 vezes no inicio do jogo
@@ -52,9 +57,12 @@ function setup() {
     chaoVisivel = createSprite(400, 230);
     chaoVisivel.addImage(chaoImg);
 
+    grupoNuvens = createGroup();
+
     nuvem2 = createSprite(850, 50);
     nuvem2.addImage(nuvemImg);
     nuvem2.velocityX = -2;
+    grupoNuvens.add(nuvem2);
 
     gameOver = createSprite(width / 2, 150);
     gameOver.addImage(gameOverImg);
@@ -66,8 +74,6 @@ function setup() {
     restart.visible = false;
 
     grupoObstaculos = createGroup();
-    grupoNuvens = createGroup();
-
 
     //set define, get obter.
     trex.setCollider("circle", -10, 0);
@@ -84,8 +90,12 @@ function draw() {
         gerarNuvens();
         gerarObstaculos();
         score += 1
+        if (score>0 && score%100===0){
+            somCheckpoint.play();
+        }
         if (grupoObstaculos.isTouching(trex)) {
             gameState = end;
+            somMorte.play();
         }
     }
     else if (gameState === end) {
@@ -114,6 +124,7 @@ function logTrex() {
     //pulo  //arrumar o pulo
     if (keyDown("space") && estaNoChao) {
         trex.velocityY = forcaPulo;
+        somPulo.play();
     }
 
 }
